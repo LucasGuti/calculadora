@@ -1,3 +1,7 @@
+let operandoA;
+let operandoB;
+let operacion;
+
 function init(){
    let resultado = document.getElementById("resultado");
    let suma = document.getElementById("sumar");
@@ -49,5 +53,68 @@ function init(){
       resultado.textContent = resultado.textContent + "0";
    }
 
+   //operaciones
+   suma.onclick = function(e){
+      operandoA = resultado.textContent;
+      operacion = "+";
+      limpiar();
+   }
+   resta.onclick = function(e){
+      operandoA = resultado.textContent;
+      operacion = "-";
+      limpiar();
+   }
+   multiplicacion.onclick = function(e){
+      operandoA = resultado.textContent;
+      operacion = "*";
+      limpiar();
+   }
+   division.onclick = function(e){
+      operandoA = resultado.textContent;
+      operacion = "/";
+      limpiar();
+   }
 
+   igual.onclick = function(e){
+      operandoB = resultado.textContent;
+      resolver();
+   }
+
+   borrar.onclick = function (e){
+      resetear();
+   }
+}
+
+//funciones
+
+function limpiar(){
+   resultado.textContent="";
+}
+
+function resolver(){
+   let res = 0;
+   switch(operacion){
+      case "+":
+         res = parseFloat(operandoA) + parseFloat(operandoB);
+         break;
+      case "-":
+         res = parseFloat(operandoA) - parseFloat(operandoB);
+         break;   
+   
+      case "*":
+         res = parseFloat(operandoA) * parseFloat(operandoB);
+         break;
+      case "/":
+         res = parseFloat(operandoA) / parseFloat(operandoB);
+         break;   
+   }
+   resetear();
+   resultado.textContent = res;
+}
+
+function resetear(){
+   resultado.textContent ="";
+   operandoA = 0;
+   operandoB = 0;
+   operacion = 0;
 }
